@@ -15,6 +15,7 @@
  */
 package com.example.wordsapp
 
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +63,21 @@ class LetterAdapter :
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list.get(position)
         holder.button.text = item.toString()
+
+        // click listener
+        holder.button.setOnClickListener {
+
+            // reference to context
+            val context = holder.view.context
+
+            // Explicit intent to go to Word List (Detail Activity)
+            val intent = Intent(context, DetailActivity::class.java)
+
+            // intent = bundle, box
+            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
+            context.startActivity(intent)
+        }
+
     }
 
     // Setup custom accessibility delegate to set the text read with
