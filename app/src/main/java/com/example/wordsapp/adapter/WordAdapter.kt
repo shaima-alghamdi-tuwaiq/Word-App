@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.wordsapp
+package com.example.wordsapp.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -26,6 +26,8 @@ import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wordsapp.DetailActivity
+import com.example.wordsapp.R
 
 /**
  * Adapter for the [RecyclerView] in [DetailActivity].
