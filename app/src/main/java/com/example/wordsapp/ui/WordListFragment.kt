@@ -5,9 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wordsapp.R
+import com.example.wordsapp.adapter.WordAdapter
+import com.example.wordsapp.databinding.FragmentWordListBinding
 
 class WordListFragment : Fragment() {
+
+    // Companion object
+    companion object {
+
+        // Key
+        const val LETTER = "letter"
+        const val SEARCH_PREFIX = "https://www.google.com/search?q="
+    }
+
+    // binding object - getting a reference to the FragmentLetterListBinding
+    private var _binding : FragmentWordListBinding? = null
+    private val binding get() = _binding!!
 
 
     // Fragment Lifecycle Function
@@ -16,8 +32,26 @@ class WordListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_word_list, container, false)
+        _binding = FragmentWordListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    // Fragment Lifecycle Function -  bind specific views to properties by calling findViewById() or binding object.
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = WordAdapter(activity?.intent?.extras?.getString(LETTER).toString(), requireContext())
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        )
+    }
+
+    // Fragment Lifecycle Function
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }
