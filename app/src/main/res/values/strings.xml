@@ -21,4 +21,6 @@
     <string name="look_up_words">Show Stored Words</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_letter_title">Letter List</string>
+    <string name="fragment_word_title">Word List</string>
 </resources>

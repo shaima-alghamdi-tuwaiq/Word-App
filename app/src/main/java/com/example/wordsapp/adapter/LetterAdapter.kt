@@ -70,9 +70,10 @@ class LetterAdapter :
         holder.button.text = item.toString()
 
         val letter = holder.button.text.toString()
+
         // click listener
         holder.button.setOnClickListener {
-            val action = LetterListFragmentDirections.actionLetterListFragmentToWordListFragment()
+            val action = LetterListFragmentDirections.actionLetterListFragmentToWordListFragment(letter)
             holder.view.findNavController().navigate(action)
         }
 

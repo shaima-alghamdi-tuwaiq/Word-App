@@ -26,6 +26,12 @@ class LetterListFragment : Fragment() {
     // to keep track of which layout state
     private var isLinearLayoutManager = true
 
+    // To set option menu
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     // Fragment Lifecycle Function
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +53,15 @@ class LetterListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // Create option menu cmd + o , ctrl + o
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // inflate menu layout
+        inflater.inflate(R.menu.layout_menu, menu)
+
+        val layoutButton = menu.findItem(R.id.action_switch_layout)
+        setIcon(layoutButton)
     }
 
     // change different layout managers based on user clicks
@@ -71,15 +86,6 @@ class LetterListFragment : Fragment() {
             else
                 ContextCompat.getDrawable(this.requireContext(), R.drawable.ic_linear_layout)
 
-    }
-
-    // Create option menu cmd + o , ctrl + o
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        // inflate menu layout
-        inflater.inflate(R.menu.layout_menu, menu)
-
-        val layoutButton = menu?.findItem(R.id.action_switch_layout)
-        setIcon(layoutButton)
     }
 
     // option menu item selected

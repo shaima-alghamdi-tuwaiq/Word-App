@@ -13,9 +13,10 @@ import com.example.wordsapp.databinding.FragmentWordListBinding
 
 class WordListFragment : Fragment() {
 
+
+
     // Companion object
     companion object {
-
         // Key
         const val LETTER = "letter"
         const val SEARCH_PREFIX = "https://www.google.com/search?q="
@@ -25,6 +26,15 @@ class WordListFragment : Fragment() {
     private var _binding : FragmentWordListBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var letterId: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            letterId = it.getString(LETTER).toString()
+        }
+    }
 
     // Fragment Lifecycle Function
     override fun onCreateView(
@@ -41,7 +51,7 @@ class WordListFragment : Fragment() {
 
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = WordAdapter(activity?.intent?.extras?.getString(LETTER).toString(), requireContext())
+        recyclerView.adapter = WordAdapter(letterId, requireContext())
 
         recyclerView.addItemDecoration(
             DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
